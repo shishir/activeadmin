@@ -5,6 +5,8 @@ gemspec
 require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FILE__)
 
 rails_version = detect_rails_version
+ruby2 = RUBY_VERSION.start_with? '2'
+
 gem 'rails', rails_version
 
 # Optional dependencies
@@ -20,7 +22,7 @@ gem 'parallel_tests'
 group :development do
   # Debugging
   gem 'pry'                # Easily debug from your console with `binding.pry`
-  gem 'better_errors'      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  gem 'better_errors', "~> #{ruby2 ? 2.0 : 1.1}" # Web UI to debug exceptions. Go to /__better_errors to access the latest one
   gem 'binding_of_caller'  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 
   # Performance
